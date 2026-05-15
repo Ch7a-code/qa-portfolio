@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Grocers API — 41 casos · 16 bugs · Carlos Chavez</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="project-header">
+  <div class="container">
+    <a class="back" href="index.html">← Portafolio</a>
+    <h1>Urban Grocers API — Pruebas de endpoints REST con Postman</h1>
+    <p class="meta">Sprint 4 · TripleTen QA Engineer · 2026 · API Testing · Postman · Jira</p>
+  </div>
+</header>
+
+<main class="container project-content">
+
+<h2>Contexto del proyecto</h2>
+<p>Urban Grocers es la API REST de un e-commerce de abarrotes. El reto del Sprint 4 era pasar del testing de UI al testing de <strong>contratos de API</strong>: leer la documentación Swagger, diseñar casos por endpoint, ejecutar con Postman y reportar defectos en Jira con la información que un desarrollador necesita para reproducir.</p>
+
+<div class="callout">
+  <strong>Mi rol:</strong> QA Manual Jr — análisis de spec OpenAPI, diseño y ejecución de 41 casos de prueba, reporte de 16 defectos en Jira con criterios de aceptación.
+</div>
+
+<h2>Análisis</h2>
+
+<h3>1. Cobertura por endpoint</h3>
+<table>
+  <thead><tr><th>Módulo</th><th>Endpoints cubiertos</th><th>Casos ejecutados</th></tr></thead>
+  <tbody>
+    <tr><td>Kits</td><td><code>POST /api/v1/kits</code>, <code>GET</code>, <code>DELETE</code></td><td>11</td></tr>
+    <tr><td>Products</td><td><code>POST /api/v1/products</code>, <code>GET /products/{id}</code></td><td>10</td></tr>
+    <tr><td>Order-and-Go</td><td><code>POST /api/v1/orders</code>, <code>GET /orders/{id}</code></td><td>20</td></tr>
+    <tr><td colspan="2"><strong>Total</strong></td><td><strong>41</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>2. Tipos de prueba aplicados a la API</h3>
+<ul>
+  <li><strong>Validación de schema:</strong> el body de respuesta cumple el contrato Swagger (campos obligatorios, tipos correctos)</li>
+  <li><strong>Códigos HTTP esperados:</strong> 200/201 en éxito, 400 en payload inválido, 401 sin token, 404 en recurso inexistente</li>
+  <li><strong>Boundary testing:</strong> nombre de kit con 0, 1, 2, 511, 512 caracteres</li>
+  <li><strong>Negative testing:</strong> tipos incorrectos (string donde se espera int), campos faltantes, headers ausentes</li>
+  <li><strong>Idempotencia:</strong> repetir POST y verificar duplicados o conflicto</li>
+</ul>
+
+<h3>3. Bugs reportados (16 en proyecto Jira <code>UG</code>)</h3>
+<p>Cada bug sigue la plantilla estándar: título descriptivo, severidad, pasos numerados con request exacto, resultado esperado vs real, payload de evidencia.</p>
+<table>
+  <thead><tr><th>ID</th><th>Severidad</th><th>Resumen</th></tr></thead>
+  <tbody>
+    <tr><td>UG-1</td><td>Alta</td><td>POST /kits acepta nombre con 512 caracteres (límite spec: 511)</td></tr>
+    <tr><td>UG-2</td><td>Alta</td><td>Falta validación de tipo: <code>quantity</code> string es aceptado y guardado</td></tr>
+    <tr><td>UG-3</td><td>Crítica</td><td>POST /orders sin token devuelve 200 en vez de 401</td></tr>
+    <tr><td>UG-4</td><td>Media</td><td>GET /products/{id} con ID inexistente devuelve 500 en vez de 404</td></tr>
+    <tr><td>UG-5</td><td>Media</td><td>Mensaje de error en español/inglés mezclado en validaciones</td></tr>
+    <tr><td>UG-6 a UG-16</td><td>Mixta</td><td>11 defectos adicionales documentados en el board <code>UG</code> de Jira</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Plantilla de bug que uso (acordada con TripleTen):</strong><br>
+  Título · Entorno · Pasos numerados · Request crudo (método + URL + headers + body) · Response actual · Response esperado · Severidad · Adjuntos (screenshot del response)
+</div>
+
+<h2>Conclusiones</h2>
+<ul>
+  <li><strong>API testing es más rápido y más profundo que UI testing.</strong> 41 casos en 2 días, mientras que la misma cobertura desde UI tomaría una semana y dependería de timing del front.</li>
+  <li><strong>Schema-first me ahorra discusiones.</strong> Si la spec dice <code>quantity: integer</code>, no hay debate: el bug es claro y el dev no puede negarlo.</li>
+  <li><strong>El bug crítico (UG-3) lo encontré en negative testing</strong>, no en flujo positivo. Confirma que probar lo que <em>no debería pasar</em> tiene más ROI que probar lo obvio.</li>
+  <li><strong>Lo que mejoraría:</strong> automatizar los 41 casos en una colección Postman con scripts de aserciones (<code>pm.test</code>) para correrlos en CI. Lo construyo en Sprint 6.</li>
+</ul>
+
+<h2>Habilidades aplicadas</h2>
+<p>API REST · Postman · Lectura de Swagger/OpenAPI · Métodos HTTP · Códigos de estado · Validación de JSON · Jira (creación y triage de defectos) · Reportes con criterios de aceptación</p>
+
+<p><a href="index.html">← Volver al portafolio</a></p>
+
+</main>
+
+<footer><div class="container"><p>© 2026 Carlos Chavez · Portafolio MVP</p></div></footer>
+</body>
+</html>

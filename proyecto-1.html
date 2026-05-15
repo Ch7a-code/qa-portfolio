@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Routes — Plan y casos de prueba · Carlos Chavez</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="project-header">
+  <div class="container">
+    <a class="back" href="index.html">← Portafolio</a>
+    <h1>Urban Routes — Plan de pruebas y suite de casos</h1>
+    <p class="meta">Sprint 3 · TripleTen QA Engineer · 2026 · Pruebas manuales · Casos de prueba</p>
+  </div>
+</header>
+
+<main class="container project-content">
+
+<h2>Contexto del proyecto</h2>
+<p>Urban Routes es una aplicación web de transporte privado que permite al usuario seleccionar dirección, elegir tarifa, agregar método de pago y solicitar viaje. El reto del Sprint 3 era pasar de la ejecución reactiva (probar lo que se ve) a la <strong>documentación formal</strong>: leer requisitos, derivar casos de prueba, organizarlos por módulo y dejar evidencia trazable de cada ejecución.</p>
+
+<div class="callout">
+  <strong>Mi rol:</strong> QA Manual Jr — análisis de requisitos, diseño de pruebas, ejecución y reporte. Trabajo individual sobre la spec entregada por TripleTen.
+</div>
+
+<h2>Análisis</h2>
+
+<h3>1. Estrategia de cobertura</h3>
+<p>Apliqué los 4 tipos de prueba a cada flujo crítico de la app:</p>
+<table>
+  <thead><tr><th>Tipo</th><th>Cuándo lo usé en Urban Routes</th></tr></thead>
+  <tbody>
+    <tr><td>Positivo</td><td>Flujo feliz: dirección válida → tarifa Comfort → pago tarjeta → solicitar viaje</td></tr>
+    <tr><td>Negativo</td><td>Dirección vacía, tarjeta inválida, código SMS incorrecto</td></tr>
+    <tr><td>Clases de equivalencia</td><td>Números de teléfono mexicanos: 10 dígitos válidos vs 9/11 dígitos inválidos</td></tr>
+    <tr><td>Valores límite</td><td>Cantidad de helados de bienvenida (mín, mín+1, máx, máx+1)</td></tr>
+  </tbody>
+</table>
+
+<h3>2. Estructura de la suite</h3>
+<p>Organicé los casos por <strong>módulo funcional</strong> (no por tipo de prueba), porque facilita ejecución por feature y mapeo a requisitos:</p>
+<ul>
+  <li><strong>Login y verificación SMS</strong> — registro de teléfono, recepción de código, errores</li>
+  <li><strong>Selección de dirección</strong> — desde, hasta, autocompletado</li>
+  <li><strong>Tarifas</strong> — Comfort, sus opciones extras (manta, helados, asistente)</li>
+  <li><strong>Pago</strong> — agregar tarjeta, validar CVV, confirmar</li>
+  <li><strong>Solicitud de viaje</strong> — confirmación, tiempos de espera, cancelación</li>
+</ul>
+
+<h3>3. Plantilla de caso de prueba</h3>
+<p>Cada caso incluye 7 campos no negociables — si alguno falta, no es ejecutable:</p>
+<table>
+  <thead><tr><th>Campo</th><th>Ejemplo Urban Routes</th></tr></thead>
+  <tbody>
+    <tr><td>ID</td><td>UR-LOG-04</td></tr>
+    <tr><td>Título</td><td>Verificar mensaje de error con código SMS incorrecto</td></tr>
+    <tr><td>Precondición</td><td>Usuario con teléfono ya registrado y SMS enviado</td></tr>
+    <tr><td>Pasos</td><td>1. Ingresar 5 dígitos aleatorios. 2. Click "Verificar"</td></tr>
+    <tr><td>Resultado esperado</td><td>Mensaje "Código incorrecto" en rojo, campo no se limpia</td></tr>
+    <tr><td>Resultado real</td><td>(se llena en ejecución)</td></tr>
+    <tr><td>Estatus</td><td>Pass / Fail / Bloqueado</td></tr>
+  </tbody>
+</table>
+
+<h2>Conclusiones</h2>
+<ul>
+  <li><strong>La suite documentada vence a la prueba improvisada.</strong> En sprints anteriores yo "tocaba la app y veía qué rompía". Con casos formales, la cobertura es repetible y se puede delegar.</li>
+  <li><strong>Trazabilidad requisito → caso → bug.</strong> Cada caso referencia el requisito que valida. Cuando el resultado es Fail, el bug ya nace con contexto: "Este bug rompe el requisito X".</li>
+  <li><strong>Clases de equivalencia ahorran tiempo real.</strong> En lugar de 50 casos de "teléfonos diferentes", 4 casos cubren todas las clases. Más eficiente sin perder cobertura.</li>
+  <li><strong>Lo que mejoraría:</strong> agregar columna de prioridad (P1/P2/P3) para que en regresión se ejecuten primero los críticos. No lo hice en Sprint 3 y lo agregaré en Sprint 6.</li>
+</ul>
+
+<h2>Habilidades aplicadas</h2>
+<p>Análisis de requisitos · Diseño de casos de prueba · Ejecución manual · Reporte de defectos · Google Sheets para tracking · Comunicación escrita técnica</p>
+
+<p><a href="index.html">← Volver al portafolio</a></p>
+
+</main>
+
+<footer><div class="container"><p>© 2026 Carlos Chavez · Portafolio MVP</p></div></footer>
+</body>
+</html>
