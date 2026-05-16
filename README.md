@@ -1,3 +1,6 @@
+
+> [[Carrera-QA/_moc]]
+
 # QA Portfolio — Carlos Chavez
 
 Portafolio MVP del Sprint 5 (Career Project 2) del bootcamp QA Engineer de TripleTen.
