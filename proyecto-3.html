@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Scooter — Proyecto final · 18 bugs · Carlos Chavez</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="project-header">
+  <div class="container">
+    <a class="back" href="index.html">← Portafolio</a>
+    <h1>Urban Scooter — Campaña de pruebas sobre web, móvil y API</h1>
+    <p class="meta">Sprint 10 · Proyecto final · TripleTen QA Engineer · 2026 · Jira · Postman · DevTools</p>
+  </div>
+</header>
+
+<main class="container project-content">
+
+<h2>Contexto del proyecto</h2>
+<p>Urban Scooter es un servicio de renta de scooters eléctricos. El proyecto final del bootcamp
+pedía algo distinto a los sprints anteriores: en vez de probar una sola superficie con una
+técnica concreta, había que <strong>planear y ejecutar una campaña completa</strong> sobre un
+producto que vive en tres lugares a la vez — el sitio web, la aplicación móvil y la capa de API
+que las alimenta a ambas.</p>
+
+<div class="callout">
+  <strong>Mi rol:</strong> QA Jr — análisis de requisitos, diseño de la cobertura sobre las tres
+  superficies, ejecución manual y reporte de <strong>18 defectos en Jira</strong>, cada uno con
+  pasos de reproducción, resultado esperado contra resultado real y severidad justificada.
+</div>
+
+<h2>Cómo abordé el trabajo</h2>
+
+<h3>1. Decidir dónde se concentraba el riesgo</h3>
+<p>Probar todo por igual en tres superficies no cabía en el tiempo del sprint, así que lo primero
+fue decidir qué merecía más atención. Prioricé el <strong>flujo de renta de punta a punta</strong>
+—alta de pedido, confirmación y cobro— porque es donde un fallo detiene al usuario y cuesta
+dinero, por encima de pantallas informativas donde un defecto molesta pero no bloquea.</p>
+
+<h3>2. Separar el defecto de la superficie</h3>
+<p>La parte más interesante del proyecto fue distinguir <strong>dónde vivía realmente cada
+fallo</strong>. Un mismo síntoma puede verse en el móvil y en la web y tener una única causa en
+la API; reportarlo dos veces infla el conteo y le hace perder tiempo al desarrollador. Cuando un
+comportamiento aparecía en más de una superficie, lo verificaba contra la respuesta de la API
+antes de decidir si era un defecto o dos.</p>
+
+<h3>3. Reportar para que otro pueda reproducirlo</h3>
+<p>Cada uno de los 18 reportes se escribió pensando en alguien que no estuvo presente cuando
+ocurrió el fallo: precondiciones, pasos numerados, resultado esperado, resultado obtenido y la
+evidencia correspondiente. La severidad no se asignó por qué tan visible era el defecto, sino por
+su efecto sobre el flujo principal.</p>
+
+<h2>Resultado</h2>
+<ul>
+  <li><strong>18 defectos reproducibles</strong> documentados en Jira, priorizados por impacto sobre el flujo de renta.</li>
+  <li>Cobertura de las tres superficies del producto: web, aplicación móvil y API.</li>
+  <li>Proyecto <strong>aprobado</strong>, cerrando los 10 sprints del bootcamp QA Engineer de TripleTen (septiembre 2026).</li>
+</ul>
+
+<h2>Qué me llevo de este proyecto</h2>
+<p>Los sprints anteriores me enseñaron técnicas sueltas: pruebas de humo, diseño de casos,
+testing de API. Este fue el primero donde tuve que <strong>decidir cuál usar y en qué orden</strong>
+con tiempo limitado, que es la parte del trabajo que no aparece en los tutoriales. También me dejó
+claro que el valor de un reporte no está en encontrar el fallo, sino en describirlo de forma que
+alguien más pueda arreglarlo sin volver a investigarlo desde cero.</p>
+
+<p class="meta">Nota: el repositorio del proyecto y el tablero de Jira contienen material del
+programa, por lo que se comparten bajo solicitud durante un proceso de selección.</p>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Carlos Chavez · <a href="index.html">Volver al portafolio</a></p>
+  </div>
+</footer>
+</body>
+</html>
